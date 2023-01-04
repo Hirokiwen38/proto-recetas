@@ -1,58 +1,73 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12">
+        <v-img
+          :src="require('../assets/logo.png')"
+          class="my-3"
+          contain
+          height="90"
+        />
+      </v-col>
+      <v-row class="mt-10">
+         <v-col cols="6" sm="3">
+            <v-text-field label="Nombre del paciente" persistent-hint variant="outlined"></v-text-field>
+          </v-col>
+          <v-col cols="6" sm="3">
+            <v-text-field label="Fecha de Nacimiento" persistent-hint variant="outlined"></v-text-field>
+          </v-col>
+          <v-select cols="3" sm="3"
+          label="Sexo"
+          :items="['Femenino', 'Masculino']"></v-select>
+          <v-col cols="3" sm="2">
+            <v-text-field label="Empresa" persistent-hint variant="outlined"></v-text-field>
+          </v-col>
+          <v-col cols="3" sm="3">
+            <v-text-field label="No. Empleado" persistent-hint variant="outlined"></v-text-field>
+          </v-col>
+          <v-select cols="3" sm="3"
+          label="Medicamento"
+          :items="['Paracetamol', 'Aspirina', 'Naproxen']"></v-select>
+          <v-col cols="3" sm="2">
+            <v-text-field label="Cantidad" persistent-hint variant="outlined"></v-text-field>
+          </v-col>
+          <v-select cols="3" sm="3"
+          label="Cantidad cada..."
+          :items="['6 hrs', '8 hrs', '12 hrs', '24 hrs']"></v-select>
+          <v-col cols="3" sm="2">
+            <v-text-field label="Durante" persistent-hint variant="outlined"></v-text-field>
+          </v-col>
+          <v-btn color="#11B1BE" class="mt-2">Añadir</v-btn>
+        </v-row> 
+        
+    </v-row>
+    <v-table height="300px" >
+      <thead>
+        <tr>
+          <th class="text-left">
+            Medicamento
+          </th>
+          <th class="text-left">
+            Cantidad
+          </th>
+          <th class="text-left">
+            Cantidad cada
+          </th>
+          <th class="text-left">
+            Durante
+          </th>
+          <th class="text-left">
+            Genérico
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </v-table>
+    <v-btn color="#11B1BE" class="mt-2">Crear Receta</v-btn>
+  </v-container>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
