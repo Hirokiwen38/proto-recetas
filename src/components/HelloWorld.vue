@@ -9,38 +9,54 @@
           height="90"
         />
       </v-col>
-      <v-row class="mt-10">
-         <v-col cols="6" sm="3">
+    </v-row>
+      <v-row class="mt-10 main-inputs" >
+         <v-col cols="3">
             <v-text-field label="Nombre del paciente" persistent-hint variant="outlined"></v-text-field>
           </v-col>
-          <v-col cols="6" sm="3">
+          <v-col cols="2">
             <v-text-field label="Fecha de Nacimiento" persistent-hint variant="outlined"></v-text-field>
           </v-col>
-          <v-select cols="3" sm="3"
+          <v-col cols="2">
+          <v-select  
           label="Sexo"
           :items="['Femenino', 'Masculino']"></v-select>
-          <v-col cols="3" sm="2">
+        </v-col>
+          <v-col cols="2">
             <v-text-field label="Empresa" persistent-hint variant="outlined"></v-text-field>
           </v-col>
-          <v-col cols="3" sm="3">
+          <v-col cols="2">
             <v-text-field label="No. Empleado" persistent-hint variant="outlined"></v-text-field>
           </v-col>
-          <v-select cols="3" sm="3"
+        </v-row>
+        <div class="main-inputs mt-6 pa-3">
+          <v-row class="mt-10">
+            <v-col cols="2">
+          <v-autocomplete
           label="Medicamento"
-          :items="['Paracetamol', 'Aspirina', 'Naproxen']"></v-select>
-          <v-col cols="3" sm="2">
+          :items="['Paracetamol', 'Aspirina', 'Naproxen']"></v-autocomplete>
+        </v-col>
+          <v-col cols="2">
             <v-text-field label="Cantidad" persistent-hint variant="outlined"></v-text-field>
           </v-col>
-          <v-select cols="3" sm="3"
+          <v-col cols="2">
+          <v-autocomplete
           label="Cantidad cada..."
-          :items="['6 hrs', '8 hrs', '12 hrs', '24 hrs']"></v-select>
-          <v-col cols="3" sm="2">
+          :items="['6 hrs', '8 hrs', '12 hrs', '24 hrs']"></v-autocomplete>
+        </v-col>
+          <v-col cols="2">
             <v-text-field label="Durante" persistent-hint variant="outlined"></v-text-field>
           </v-col>
-          <v-btn color="#11B1BE" class="mt-2">Añadir</v-btn>
+          <v-col cols="2">
+          <v-select  
+          label="tiempo"
+          :items="['Días', 'Semanas']">
+        </v-select>
+      </v-col>
+          <v-btn color="#4CABD3" class="mt-2">Añadir</v-btn>
         </v-row> 
         
-    </v-row>
+   
     <v-table height="300px" >
       <thead>
         <tr>
@@ -65,9 +81,18 @@
         
       </tbody>
     </v-table>
-    <v-btn color="#11B1BE" class="mt-2">Crear Receta</v-btn>
+  </div>
+
+    <v-btn color="#4CABD3" class="mt-2">Crear Receta</v-btn>
   </v-container>
 </template>
 
 <script>
 </script>
+<style scoped>
+.main-inputs{
+  border: solid 1px;
+  border-radius: 1rem;
+}
+
+</style>
