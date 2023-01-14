@@ -16,14 +16,17 @@
           label="Nombre del paciente"
           persistent-hint
           variant="outlined"
+          :rules="[rules.nombre,rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="2">
-        <v-text-field
-          label="Fecha de Nacimiento"
-          persistent-hint
-          variant="outlined"
-        ></v-text-field>
+      <v-col cols="2" class="ma-0 pa-0" >
+        <Datepicker
+        v-model="date"
+        :enable-time-picker="false"
+        placeholder="Fecha de Nacimiento"
+        locale="es"
+        >
+      </Datepicker>
       </v-col>
       <v-col cols="2">
         <v-select label="Sexo" :items="['Femenino', 'Masculino']"></v-select>
@@ -40,6 +43,8 @@
           label="No. Empleado"
           persistent-hint
           variant="outlined"
+          :rules="[rules.empleado,rules.required]"
+          type="number"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -56,9 +61,11 @@
         <v-col cols="2">
           <v-text-field
             label="Cantidad"
+            type="number"
             persistent-hint
             v-model="pack_product.cantidad"
             variant="outlined"
+            :rules="[rules.cantidad,rules.required]"
           ></v-text-field>
         </v-col>
         <v-col cols="2">
@@ -75,6 +82,8 @@
             persistent-hint
             variant="outlined"
             v-model="pack_product.periodo"
+            :rules="[rules.durante,rules.required]"
+            type="number"
           ></v-text-field>
         </v-col>
         <v-col cols="2">
@@ -91,6 +100,7 @@
           style="height: 56px"
           class="mt-3 text-white"
           v-on:click="add_product()"
+          v-bind:disabled="medication_check"
           >Añadir</v-btn
         >
       </v-row>
@@ -156,27 +166,64 @@
         color="success"
         timeout="2000"
       >
-        Receta creada exitosamente!
+      ¡Receta creada exitosamente!
       </v-snackbar>
   </div>
 </template>
 
 <script>
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
+
 export default {
+  components: { Datepicker },
   data() {
     return {
+      date: null,
       dialog: false,
       snackbar:false,
       array_recipe: [],
       pack_product: {},
+      rules: {
+        requerido: value => !!value || 'Requerido',
+        cantidad: value => {
+          const pattern =/([0-9])*\d+/g
+          return pattern.test(value) || 'Inválido'
+        },
+        nombre: value => {
+          const pattern =/^[a-zA-Z ]*$/g
+          return pattern.test(value) || 'Inválido'
+        },
+        empleado: value => {
+          const pattern =/([0-9])*\d+/g
+          return pattern.test(value) || 'Inválido'
+        },
+        durante: value => {
+          const pattern =/([0-9])*\d+/g
+          return pattern.test(value) || 'Inválido'
+        },
+      }
     };
   },
+  computed:{
+    medication_check(){
+      var flag = null;
+      if(Object.keys(this.pack_product).length === 0){
+        flag= true;
+      }else{
+        flag= false;
+      }
+      return flag;
+    }
+  },
   methods: {
+   
     enviar_receta(){
       if (this.array_recipe.length>0) {
         this.snackbar=true;
         console.log(this.array_recipe);
-        // this.array_recipe= [];
+        this.array_recipe= [];
         this.dialog=false;
       }
     },
@@ -199,4 +246,5 @@ export default {
   border: solid 1px;
   border-radius: 1rem;
 }
+
 </style>
