@@ -49,8 +49,8 @@
       </v-col>
     </v-row>
     <div class="main-inputs mt-6 pa-3">
-      <v-row class="d-flex justify-center mt-6">
-        <v-col cols="2">
+      <v-row class="d-flex justify-center mt-6 pa-3">
+        <v-col >
           <v-combobox
             label="Medicamento"
             v-model="pack_product.medicamento"
@@ -58,7 +58,14 @@
           >
           </v-combobox>
         </v-col>
-        <v-col cols="2">
+        <v-col >
+        <v-select v-model="pack_product.selected"
+        label="Grupo" 
+        :items="['Grupo 1', 'Grupo 2', 'Grupo 3', 'Grupo 4']"
+        >
+      </v-select>
+      </v-col>
+        <v-col >
           <v-text-field
             label="Cantidad"
             type="number"
@@ -68,7 +75,7 @@
             :rules="[rules.cantidad,rules.required]"
           ></v-text-field>
         </v-col>
-        <v-col cols="2">
+        <v-col >
           <v-combobox
             label="Cantidad cada..."
             v-model="pack_product.rango_tiempo"
@@ -76,7 +83,7 @@
           >
           </v-combobox>
         </v-col>
-        <v-col cols="2">
+        <v-col >
           <v-text-field
             label="Durante"
             persistent-hint
@@ -86,7 +93,7 @@
             type="number"
           ></v-text-field>
         </v-col>
-        <v-col cols="2">
+        <v-col >
           <v-select
             label="tiempo"
             v-model="pack_product.tipo_periodo"
@@ -109,6 +116,7 @@
         <thead>
           <tr>
             <th class="text-left">Medicamento</th>
+            <th class="text-left">Grupo</th>
             <th class="text-left">Cantidad</th>
             <th class="text-left">Cantidad cada</th>
             <th class="text-left">Durante</th>
@@ -118,11 +126,12 @@
         <tbody>
           <tr v-for="(item, index) in array_recipe" :key="index">
             <td>{{ item.medicamento }}</td>
+            <td>{{ item.selected }}</td>
             <td>{{ item.cantidad }}</td>
             <td>{{ item.rango_tiempo }}</td>
             <td>{{ item.periodo }} {{ item.tipo_periodo }}</td>
             <td>
-              <v-checkbox
+              <v-checkbox class="d-flex align-center"
                 :value="item.medicamento"
                 v-on:click="generic_check(index)"
               ></v-checkbox>
@@ -184,7 +193,7 @@ export default {
       dialog: false,
       snackbar:false,
       array_recipe: [],
-      pack_product: {},
+      pack_product: {selected: 'Grupo 1'},
       rules: {
         requerido: value => !!value || 'Requerido',
         cantidad: value => {
@@ -209,7 +218,7 @@ export default {
   computed:{
     medication_check(){
       var flag = null;
-      if(Object.keys(this.pack_product).length === 0){
+      if(Object.keys(this.pack_product).length <6){
         flag= true;
       }else{
         flag= false;
@@ -236,7 +245,7 @@ export default {
     },
     add_product() {
       this.array_recipe.push(this.pack_product);
-      this.pack_product = {};
+      this.pack_product = {selected: 'Grupo 1'};
     },
   },
 };
