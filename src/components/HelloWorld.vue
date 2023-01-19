@@ -19,14 +19,16 @@
           :rules="[rules.nombre,rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="2" class="ma-0 pa-0" >
+      <v-col cols="2" class="pb-5 pa-0 mr-2" >
         <Datepicker
-        v-model="date"
-        :enable-time-picker="false"
-        placeholder="Fecha de Nacimiento"
-        locale="es"
+        class="text-center"
+        v-model="picked"
+        placeholder="Fecha de nacimiento"
+        style="height: 56px; border: lightgray solid; border-radius: 0.3rem; border-width: revert;"
         >
       </Datepicker>
+
+
       </v-col>
       <v-col cols="2">
         <v-select label="Sexo" :items="['Femenino', 'Masculino']"></v-select>
@@ -180,9 +182,16 @@
   </div>
 </template>
 
+<script setup>
+import Datepicker from 'vue3-datepicker'
+import { ref } from 'vue'
+const picked = ref(new Date())
+</script>
+
 <script>
-import Datepicker from '@vuepic/vue-datepicker';
+
 import '@vuepic/vue-datepicker/dist/main.css'
+import 'v-calendar/dist/style.css';
 
 
 export default {
