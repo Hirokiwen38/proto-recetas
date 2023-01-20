@@ -19,12 +19,14 @@
           :rules="[rules.nombre,rules.required]"
         ></v-text-field>
       </v-col>
-      <v-col cols="2" class="pb-5 pa-0 mr-2" >
+      <v-col cols="2" class="mb-5 pa-0 mr-2"
+      style="color: slategray; border: lightgray solid; border-radius: 0.3rem; border-width: revert; height: 60px;" >
+        Fecha de nacimiento
         <Datepicker
-        class="text-center"
+        class="text-center pb-5"
         v-model="picked"
         placeholder="Fecha de nacimiento"
-        style="height: 56px; border: lightgray solid; border-radius: 0.3rem; border-width: revert;"
+        style="height: 35px;"
         >
       </Datepicker>
 
